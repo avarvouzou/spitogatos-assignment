@@ -1,1 +1,27 @@
-<p>contact-form works!</p>
+<div style="text-align: left; width: 1064px; height: 1080px; background-color: #f8f8f8;">
+    <h1 style="font-size: 32px; font-weight: 800; width: 695px; height: 32px;">Contact Us</h1>
+    <p style="width: 696px; height: 48px; font-size: 18px; line-height: 26px; margin-bottom: 48px;">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    </p>
+    <form [formGroup]="contactForm">
+        <div class="input-container">
+            <input class="detail-input" type="text" placeholder="Full Name *" formControlName="name"/>
+            <span class="floating-label">Full Name *</span>
+        </div>
+        <div class="input-container">
+            <input class="detail-input" type="email" placeholder="E-mail *" formControlName="email"/>
+            <span class="floating-label">E-mail *</span>
+        </div>
+        <div class="input-container">
+            <input class="detail-input" type="number" placeholder="Phone*" formControlName="phone"/>
+            <span class="floating-label">Phone*</span>
+        
+        <div class="input-container"></div>
+            <textarea class="detail-input detail-textarea" placeholder="Message" formControlName="message"></textarea>
+            <span class="floating-label">Message</span>
+        </div>
+
+        <button class="button" type="submit">Submit</button>
+      
+    </form>
+</div>

@@ -1,0 +1,65 @@
+::placeholder {
+    font-size: 16px;
+    font-weight: 500;
+    color: #000000;
+    
+    text-indent: 40px;
+    height: 19px;
+}
+
+input:focus::placeholder, textarea:focus::placeholder {
+    color: transparent;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 30px #f8f8f8 inset !important;
+}
+
+.detail-input:hover {
+    border: 1px solid #4B00FF;
+}
+
+.detail-input {
+    display: block;
+    border: 1px solid #000000;
+    background-color: #f8f8f8;
+    border-radius: 28px;
+    width: 696px;
+    height: 56px;
+    outline: none;
+    text-indent: 40px;
+
+}
+
+.detail-textarea {
+    height: 112px;
+    resize: none;
+}
+
+.input-container {
+    margin-bottom: 40px;
+}
+
+.floating-label {
+    position: relative;
+    top: -70px;
+    left: 40px;
+    background-color: #f8f8f8;
+    padding: 0px 8px;
+    width: 86px;
+    height: 17px;
+    font-size: 12px;
+    font-weight: 500;
+
+}
+
+.detail-input:hover ~ .floating-label {
+    color: #4B00FF;
+}
+
+input:not(:focus) ~ .floating-label {
+    display: none;
+}
