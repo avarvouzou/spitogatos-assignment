@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl, ValidatorFn } from '@angular/forms';
 
 @Component({
   selector: 'app-contact-form',
@@ -11,6 +11,7 @@ export class ContactFormComponent implements OnInit {
 
   public selected: any;
   contactForm: FormGroup;
+  checkboxGroup: FormGroup;
   categories = []
   errrorTexts = ['This field is required','Help Text','Error Message']
 
@@ -18,12 +19,17 @@ export class ContactFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private httpClient: HttpClient) { 
       this.contactForm = formBuilder.group({
-        name: ['', Validators.required],
-        email: ['', Validators.required],
-        phone: [null, Validators.required],
-        message: ['', Validators.required],
+        name: new FormControl ('', [Validators.required, Validators.pattern("^[A-Za-z]{1,}$")]),
+        email: new FormControl ('', [Validators.required, Validators.pattern("@spitogatos.gr$")]),
+        phone:  new FormControl (null, [Validators.required, Validators.pattern("^[0-9]{1,10}$")]),
+        message: new FormControl ('', [Validators.required]),
         category: [],
         subCategory: [],
+        checkboxGroup : new FormGroup({
+          option1 : new FormControl(false),
+          option2 : new FormControl(false)
+        },this.requireCheckboxesToBeCheckedValidator())
+
       })
   }
 
@@ -31,34 +37,14 @@ export class ContactFormComponent implements OnInit {
     this.httpClient.get('https://run.mocky.io/v3/0b8fbded-6ce4-4cb2-bf2f-d2c39207506b').subscribe((res: any) => {
       this.categories = res;
     }) 
-    console.log(this.contactForm.get('name'))
+    
+    console.log(this.contactForm.get('message').value.length);
+    
   }
 
   selectCategory (event) {
     let cat = parseInt(event.target.value);
     this.selected = this.categories.find((c) => c.categoryId === cat);
-  }
-
-  // Only Alphabetic
-  keyPressABC(event) {
-    var inp = String.fromCharCode(event.keyCode);
-    if (/[A-Za-z]/.test(inp)) {
-      return true;
-    } else {
-      event.preventDefault();
-      return false;
-    }
-  }
-
-  // Only Numeric
-  keyPress123(event) {
-    var inp = String.fromCharCode(event.keyCode);
-    if (/[0-9]/.test(inp)) {
-      return true;
-    } else {
-      event.preventDefault();
-      return false;
-    }
   }
 
   submit() {
@@ -82,6 +68,28 @@ export class ContactFormComponent implements OnInit {
 
   get firstname(): string {
     return this.contactForm.get('firstname').value;
+  }
+
+  requireCheckboxesToBeCheckedValidator(minRequired = 1): ValidatorFn {
+    return function validate (formGroup: FormGroup) {
+      let checked = 0;
+  
+      Object.keys(formGroup.controls).forEach(key => {
+        const control = formGroup.controls[key];
+  
+        if (control.value === true) {
+          checked ++;
+        }
+      });
+  
+      if (checked < minRequired) {
+        return {
+          requireOneCheckboxToBeChecked: true,
+        };
+      }
+  
+      return null;
+    };
   }
 
 }

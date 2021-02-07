@@ -7,26 +7,37 @@
         <form [formGroup]="contactForm">
 
             <div class="input-container">
-                <input class="detail-input" type="text" placeholder="Full Name *" formControlName="name" (keypress)="keyPressABC($event)" required/>
+                <input class="detail-input" type="text" placeholder="Full Name *" formControlName="name" required/>
                 <span class="floating-label">Full Name *</span>
                 <div *ngIf="(contactForm.controls.name.dirty || contactForm.controls.name.touched) && 
                     contactForm.controls.name.errors && contactForm.controls.name.errors.required">
                     This field is required.
                 </div>
+                <div *ngIf="contactForm.controls.name.errors && contactForm.controls.name.errors.pattern">
+                    Error Message
+                </div>
+                
             </div>
 
             <div class="input-container">
-                <input class="detail-input" type="email" placeholder="E-mail *" formControlName="email"/>
+                <input class="detail-input" type="email" placeholder="E-mail *" formControlName="email" required/>
                 <span class="floating-label">E-mail *</span>
                 <div *ngIf="(contactForm.controls.email.dirty || contactForm.controls.email.touched) && 
                     contactForm.controls.email.errors && contactForm.controls.email.errors.required">
                     This field is required.
-                </div>  
+                </div>
+                <div *ngIf="contactForm.controls.email.errors && contactForm.controls.email.errors.pattern">
+                    Error Message
+                </div>
             </div>
 
             <div class="input-container">
-                <input class="detail-input" type="number" placeholder="Phone*" formControlName="phone" (keypress)="keyPress123($event)"/>
+                <input class="detail-input" type="number" placeholder="Phone*" formControlName="phone" required/>
                 <span class="floating-label">Phone*</span>
+                <div *ngIf="(contactForm.controls.phone.dirty || contactForm.controls.phone.touched) && 
+                    contactForm.controls.phone.errors && contactForm.controls.phone.errors.required">
+                    This field is required.
+                </div>
             </div>
 
             <select class="input-container detail-input detail-select" formControlName="category" placeholder="Category" (change)="selectCategory($event)">
@@ -39,15 +50,18 @@
 
             <div class="input-container">
                 <textarea class="detail-input detail-textarea" placeholder="Message" formControlName="message" maxlength="100"></textarea>
+                {{100 - contactForm.controls.message.value.length}}
             </div>
 
-            <div class="select-paragraph">
+            <div class="select-paragraph" formGroupName="checkboxGroup">
                 <p style="margin-bottom: 0px;">Please select at least one of the following:</p>
-                <input class="option-checkbox" type="checkbox" name="option1">
+                <input class="option-checkbox" type="checkbox" formControlName="option1">
                 <label class="label-checkbox">Option 1</label>
-                <input style="margin-left: 37px;" class="option-checkbox" type="checkbox" name="option2">
+                <input style="margin-left: 37px;" type="checkbox" class="option-checkbox" formControlName="option2">
                 <label class="label-checkbox">Option 2</label>
-
+                
+                <div *ngIf="contactForm.controls['checkboxGroup'].errors && contactForm.controls['checkboxGroup'].errors.requireOneCheckboxToBeChecked">
+                    At least one checkbox is required to check</div>
             </div>
             
             <button class="submit-button" type="submit"><span class="button-text" (click)="submit()">Submit</span></button>
