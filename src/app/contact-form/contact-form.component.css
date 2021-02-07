@@ -63,6 +63,7 @@
     border: 1px solid #000000;
     border-radius: 28px;
     display: inline;
+    font-size: 16px;
 }
 
 
@@ -84,11 +85,10 @@ input:not(:focus) ~ .floating-label {
     padding-top: 25px;
 }
 
-input[type="text"] {
+input {
     font-size: 16px;
     font-family: "Montserrat";
-    font-weight: 500;
-    
+    font-weight: 500;   
 }
 
 input:focus::placeholder, textarea:focus::placeholder {
@@ -114,6 +114,10 @@ input:-webkit-autofill:active  {
     box-shadow: 0px 3px 6px #00000066;
 }
 
+.submit-button:hover {
+    background: #3E00D4 0% 0% no-repeat padding-box;
+}
+
 .button-text {
   color: #FFFFFF;
   font-size: 18px;
@@ -137,6 +141,12 @@ input:-webkit-autofill:active  {
     height: 24px;
     border: 1px solid #4B00FF;
     border-radius: 4px;
+    margin-top: 21px;
+}
+
+.label-checkbox {
+    margin-left: 16px;
+    font-weight: 500;
 }
 
 

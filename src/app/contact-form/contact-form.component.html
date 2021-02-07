@@ -5,18 +5,27 @@
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </p>
         <form [formGroup]="contactForm">
+
             <div class="input-container">
-                <input class="detail-input" type="text" placeholder="Full Name *" formControlName="name"/>
+                <input class="detail-input" type="text" placeholder="Full Name *" formControlName="name" (keypress)="keyPressABC($event)" required/>
                 <span class="floating-label">Full Name *</span>
+                <div *ngIf="(contactForm.controls.name.dirty || contactForm.controls.name.touched) && 
+                    contactForm.controls.name.errors && contactForm.controls.name.errors.required">
+                    This field is required.
+                </div>
             </div>
 
             <div class="input-container">
                 <input class="detail-input" type="email" placeholder="E-mail *" formControlName="email"/>
                 <span class="floating-label">E-mail *</span>
+                <div *ngIf="(contactForm.controls.email.dirty || contactForm.controls.email.touched) && 
+                    contactForm.controls.email.errors && contactForm.controls.email.errors.required">
+                    This field is required.
+                </div>  
             </div>
 
             <div class="input-container">
-                <input class="detail-input" type="number" placeholder="Phone*" formControlName="phone"/>
+                <input class="detail-input" type="number" placeholder="Phone*" formControlName="phone" (keypress)="keyPress123($event)"/>
                 <span class="floating-label">Phone*</span>
             </div>
 
@@ -29,17 +38,19 @@
             </select>
 
             <div class="input-container">
-                <textarea class="detail-input detail-textarea" placeholder="Message" formControlName="message"></textarea>
+                <textarea class="detail-input detail-textarea" placeholder="Message" formControlName="message" maxlength="100"></textarea>
             </div>
 
             <div class="select-paragraph">
-                <p >Please select at least one of the following:</p>
-                <input class="option-checkbox" type="checkbox" name="option1" value="Bike">
-                <label>Option 1</label>
+                <p style="margin-bottom: 0px;">Please select at least one of the following:</p>
+                <input class="option-checkbox" type="checkbox" name="option1">
+                <label class="label-checkbox">Option 1</label>
+                <input style="margin-left: 37px;" class="option-checkbox" type="checkbox" name="option2">
+                <label class="label-checkbox">Option 2</label>
 
             </div>
             
-            <button class="submit-button" type="submit"><span class="button-text">Submit</span></button>
+            <button class="submit-button" type="submit"><span class="button-text" (click)="submit()">Submit</span></button>
         </form>
     </div>   
 </div>
