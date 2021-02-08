@@ -3,3 +3,47 @@
     height: 1032px;
     object-fit: cover;
 }
+
+.circle {
+    width: 32px;
+    height: 32px;
+    background: #B4FF00;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 500px 412px;
+}
+
+.circle:hover {
+    width: 358px;
+    height: 358px;
+    margin-top: 343px;
+    margin-bottom: 331px;
+    margin-left: 256px;
+    margin-right: 242px;
+}
+
+.hover-text {
+    font-size: 22px;
+    font-weight: 500;
+    color: #000000;
+    display: none;
+}
+
+.circle:hover + .hover-text + .hover-text {
+    display: block !important;
+}
+.circle:hover + .hover-text  {
+    display: block !important;
+}
+
+.email {
+    margin-top: -566px;
+    margin-bottom: -471px;
+    margin-left: 323px;
+    margin-right: 306px;
+}
+
+.phone-number {
+    margin-left: 347px;
+    margin-top: 488px;
+}

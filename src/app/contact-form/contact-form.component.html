@@ -1,1 +1,81 @@
-<p>contact-form works!</p>
+<div class="form">
+    <div style="width: 696px; padding: 84px 184px 112px">
+        <h1 class="title">Contact Us</h1>
+        <p class="details">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+        <form [formGroup]="contactForm">
+
+            <div class="input-container">
+                <input class="detail-input" type="text" placeholder="Full Name *" formControlName="name" required/>
+                <span class="floating-label">Full Name *</span>
+                <div class="label-inputBottom" *ngIf="!(contactForm.controls.name.dirty || contactForm.controls.name.touched)">
+                    This field is required.
+                </div>
+                <div class="label-inputBottom" *ngIf="contactForm.controls.name.errors && contactForm.controls.name.errors.pattern">
+                    Error Message
+                </div>
+                <div class="label-inputBottom" *ngIf="(contactForm.controls.name.dirty || contactForm.controls.name.touched) 
+                    && !(contactForm.controls.name.errors && contactForm.controls.name.errors.pattern)">
+                    Help Text
+                </div>
+                
+            </div>
+
+            <div class="input-container">
+                <input class="detail-input" type="email" placeholder="E-mail *" formControlName="email" required/>
+                <span class="floating-label">E-mail *</span>
+                <div class="label-inputBottom" *ngIf="!(contactForm.controls.email.dirty || contactForm.controls.email.touched)">
+                    This field is required.
+                </div>
+                <div class="label-inputBottom" *ngIf="contactForm.controls.email.errors && contactForm.controls.email.errors.pattern">
+                    Error Message
+                </div>
+                <div class="label-inputBottom" *ngIf="(contactForm.controls.email.dirty || contactForm.controls.email.touched) 
+                    && !(contactForm.controls.email.errors && contactForm.controls.email.errors.pattern)">
+                    Help Text
+                </div>
+            </div>
+
+            <div class="input-container">
+                <input class="detail-input" type="number" placeholder="Phone*" formControlName="phone" required/>
+                <span class="floating-label">Phone*</span>
+                <div class="label-inputBottom" *ngIf="(contactForm.controls.phone.dirty || contactForm.controls.phone.touched) && 
+                    contactForm.controls.phone.errors && contactForm.controls.phone.errors.required">
+                    This field is required.
+                </div>
+                <div class="label-inputBottom" *ngIf="contactForm.controls.phone.errors && contactForm.controls.phone.errors.pattern">
+                    Error Message
+                </div>
+            </div>
+
+            <select class="input-container detail-input detail-select" formControlName="category" placeholder="Category" (change)="selectCategory($event)">
+                <option [value]="category.categoryId" *ngFor="let category of categories" >{{category.name}}</option>
+            </select>
+
+            <select class="input-container detail-input detail-select" style="margin-left: 40px;" formControlName="subCategory">
+                <option [value]="subCategory.subCategoryId" *ngFor="let subCategory of selected?.subCategories">{{subCategory?.name}}</option>
+            </select>
+
+            <div class="input-container last-input">
+                <textarea class="detail-input detail-textarea" placeholder="Message" formControlName="message" maxlength="100"></textarea>
+                <span style="margin-left: 657px; opacity: 0.7; font-size: 12px;">{{100 - contactForm.controls.message.value.length}}</span>
+            </div>
+
+            <div class="select-paragraph" formGroupName="checkboxGroup">
+                <p style="margin-bottom: 0px; font-size: 16px;">Please select at least one of the following:</p>
+                <input class="option-checkbox" type="checkbox" formControlName="option1">
+                <label class="label-checkbox">Option 1</label>
+                <input style="margin-left: 37px;" type="checkbox" class="option-checkbox" formControlName="option2">
+                <label class="label-checkbox">Option 2</label>
+            </div>
+            
+            <button class="submit-button" type="submit"><span class="button-text" (click)="submit()">Submit</span></button>
+             <!--not requested in the assignment-->
+             <div style="font-size: 10px;" *ngIf="contactForm.controls['checkboxGroup'].errors && contactForm.controls['checkboxGroup'].errors.requireOneCheckboxToBeChecked">
+                At least one checkbox is required to check
+            </div>
+            <!----->
+        </form>
+    </div>   
+</div>
