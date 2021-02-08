@@ -26,7 +26,7 @@
 .detail-input {
     display: block;
     border: 1px solid #000000;
-    background-color: #f8f8f8;
+    background-color: transparent;
     border-radius: 28px;
     width: 690px;
     height: 56px;

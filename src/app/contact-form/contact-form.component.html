@@ -44,6 +44,9 @@
                     contactForm.controls.phone.errors && contactForm.controls.phone.errors.required">
                     This field is required.
                 </div>
+                <div class="label-inputBottom" *ngIf="contactForm.controls.phone.errors && contactForm.controls.phone.errors.pattern">
+                    Error Message
+                </div>
             </div>
 
             <select class="input-container detail-input detail-select" formControlName="category" placeholder="Category" (change)="selectCategory($event)">
@@ -65,15 +68,14 @@
                 <label class="label-checkbox">Option 1</label>
                 <input style="margin-left: 37px;" type="checkbox" class="option-checkbox" formControlName="option2">
                 <label class="label-checkbox">Option 2</label>
-
-                <!--not requested in the assignment-->
-                <div style="font-size: 10px;" *ngIf="contactForm.controls['checkboxGroup'].errors && contactForm.controls['checkboxGroup'].errors.requireOneCheckboxToBeChecked">
-                    At least one checkbox is required to check
-                </div>
-                <!----->
             </div>
             
             <button class="submit-button" type="submit"><span class="button-text" (click)="submit()">Submit</span></button>
+             <!--not requested in the assignment-->
+             <div style="font-size: 10px;" *ngIf="contactForm.controls['checkboxGroup'].errors && contactForm.controls['checkboxGroup'].errors.requireOneCheckboxToBeChecked">
+                At least one checkbox is required to check
+            </div>
+            <!----->
         </form>
     </div>   
 </div>

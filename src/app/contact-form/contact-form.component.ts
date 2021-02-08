@@ -21,7 +21,7 @@ export class ContactFormComponent implements OnInit {
       this.contactForm = formBuilder.group({
         name: new FormControl ('', [Validators.required, Validators.pattern("^[A-Za-z]{1,}$")]),
         email: new FormControl ('', [Validators.required, Validators.pattern("@spitogatos.gr$")]),
-        phone:  new FormControl (null, [Validators.required, Validators.pattern("^[0-9]{1,10}$")]),
+        phone:  new FormControl (null, [Validators.required, Validators.pattern("^[0-9]{10}$")]),
         message: new FormControl ('', [Validators.required]),
         category: [],
         subCategory: [],
