@@ -3,8 +3,10 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.0.
 
 ## To run this project install first
-npm install -g @angular/cli
-npm install
+
+`npm install -g @angular/cli`
+
+`npm install`
 
 ## Development server
 
